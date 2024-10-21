@@ -1,26 +1,37 @@
 from user import User
 from admin import Admin
 
-admin1 = Admin(1, "Bob")
-user1 = User(2, "Tom")
-user2 = User(3, "Todd")
-user3 = User(4, "Tim")
-user4 = User(5, "Tina")
-user5 = User(6, "Terry")
+# Создание пустого списка пользователей
+users = []
 
-admin1.add_user(user1)
-admin1.add_user(user2)
-admin1.add_user(user3)
-admin1.add_user(user4)
-admin1.add_user(user5)
+# Создание администратора
+admin = Admin(6, "Алексей")
 
-print(admin1)
+# Администратор добавляет пользователей в систему
+admin.add_user(users, User(1, "Анна"))
+admin.add_user(users, User(2, "Борис"))
+admin.add_user(users, User(3, "Виктор"))
+admin.add_user(users, User(4, "Галина"))
+admin.add_user(users, User(5, "Дмитрий"))
 
-admin1.change_user_level(user1, "advanced")
+# Вывод списка пользователей после добавления
+print("Список пользователей после добавления:")
+for user in users:
+    print(user)
 
-print(f"Авторизованные пользователи: {admin1.auth_users()}")
+# Администратор повышает уровень доступа у двух пользователей
+admin.promote_user(users[0])  # Повышаем Анну
+admin.promote_user(users[1])  # Повышаем Бориса
 
-admin1.remove_user(user3)
+# Вывод списка после повышения уровня доступа
+print("\nСписок пользователей после повышения::")
+for user in users:
+    print(user)
 
-print(f"Авторизованные пользователи: {admin1.auth_users()}")
+# Администратор удаляет одного пользователя
+admin.remove_user(users, 3)  # Удаляем Виктора
 
+# Вывод списка пользователей после удаления
+print("\nСписок пользователей после удаления:")
+for user in users:
+    print(user)
